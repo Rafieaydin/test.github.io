@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/geolocator/2.1.5/geolocator.min.js" integrity="sha512-R0ksqyRZYwP5ngAjS9KwXAPh4H0OiesjRspjvDn5NcgLeSqRWX+JYb792Aw0yuRKl9lDx3S9g+g/fr+DFgtpyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geolocator/2.1.5/geolocator.min.js" integrity="sha512-R0ksqyRZYwP5ngAjS9KwXAPh4H0OiesjRspjvDn5NcgLeSqRWX+JYb792Aw0yuRKl9lDx3S9g+g/fr+DFgtpyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+    <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script>
+    <link href="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.css" rel="stylesheet" />
 </head>
 <body>
         <div id="negara :"></div>
@@ -15,6 +17,7 @@
         <div id="ip :"></div>
         <div id="lang"></div>
         <div id="long"></div>
+        <div id="map" style='width: 400px; height: 300px;'></div>
 </body>
 
 <script>
@@ -26,22 +29,7 @@
       //  document.getElementById('lang').innerHTML = "Latitude :" + response.data.latitude;
       //  document.getElementById('long').innerHTML = "Longitude :" + response.data.longitude;
     // })
-    if (navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(function(position) {
-        document.getElementById('lang').innerHTML = "Latitude :" + position.coords.latitude;
-        document.getElementById('long').innerHTML = "Longitude :" + position.coords.longitude;
-            axios.get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+position.coords.latitude+'&longitude='+position.coords.longitude+'&localityLanguage=id').then(response => {
-            // console.log(response.data);
-            document.getElementById('negara :').innerHTML = "Negara :" + response.data.countryName;
-            document.getElementById('kota :').innerHTML = "kota :" + response.data.city;
-            document.getElementById('Network :').innerHTML = "Network :" + response.data.principalSubdivisionCode;
-        });
-        axios.get('https://ipapi.co/json/').then(response => {
-            document.getElementById('ip :').innerHTML = "IP :" + response.data.ip;
-        });
-    });
-    }else{
-        console.log("Geolocation is not supported by this browser.");
-    }
+   
 </script>
+<script src='./script.js'></script>
 </html>
